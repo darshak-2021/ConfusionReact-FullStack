@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 
-function Contact() {
-    return(
+class Contact extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            firstname:'',
+            lastname:'',
+            telnumber:'',
+            email:'',
+            agree:false,
+            contactType:'Tel.',
+            message:''
+        }
+        this.buttonOnSubmitHandler = this.buttonOnSubmitHandler.bind(this);
+        this.inputOnChangeHandler = this.inputOnChangeHandler.bind(this);
+
+    }
+
+    inputOnChangeHandler = (event) => {
+        const target = event.target;
+        const value = target.type === "checkbox" ? target.checked : target.value;
+        const name =  target.name;
+
+        this.setState({
+            [name]:value
+        });
+    }
+
+    buttonOnSubmitHandler = (event) => {
+        console.log("Current state is:" + JSON.stringify(this.state));
+        alert("Current state is:" + JSON.stringify(this.state));
+        event.preventDefault();
+    }
+    render() {
+        return(
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -46,8 +78,117 @@ function Contact() {
                     </div>
                 </div>
             </div>
+            <div className="row row-content">
+                <div className="col-12">
+                    <h3>Send us Your FEEDBACK</h3>
+                </div>
+                <div className="col-12 col-md-9">
+                    <Form onSubmit={this.buttonOnSubmitHandler}>
+                        <FormGroup row>
+                            <Label htmlFor="firstname" className="col-md-2">First Name</Label>
+                            <Col className="col-md-10">
+                                <Input 
+                                    type="text" 
+                                    id="firstname" 
+                                    name="firstname"
+                                    placeholder="John"
+                                    value={this.state.firstname}
+                                    onChange={this.inputOnChangeHandler}
+                                />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Label htmlFor="lastname" md={2}>Last Name</Label>
+                            <Col md={10}>
+                                <Input 
+                                    type="text" 
+                                    id="lastname" 
+                                    name="lastname"
+                                    placeholder="Stark"
+                                    value={this.state.lastname}
+                                    onChange={this.inputOnChangeHandler}
+                                />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Label htmlFor="telnumber" md={2}>Contact Tel.</Label>
+                            <Col md={10}>
+                                <Input 
+                                    type="tel" 
+                                    id="telnumber" 
+                                    name="telnumber"
+                                    placeholder="Tel. Number"
+                                    value={this.state.telnumber}
+                                    onChange={this.inputOnChangeHandler}
+                                />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Label htmlFor="email" md={2}>Email Address</Label>
+                            <Col md={10}>
+                                <Input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email"
+                                    placeholder="Johnstark@gmail.com"
+                                    value={this.state.email}
+                                    onChange={this.inputOnChangeHandler}
+                                />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Col md={{size:6, offset:2}}>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input 
+                                            type="checkbox" 
+                                            name="agree"
+                                            checked={this.state.agree}
+                                            onChange={this.inputOnChangeHandler}
+                                        /> {' '}
+                                        <strong>May we contact you?</strong>
+                                    </Label>
+                                </FormGroup>
+                            </Col>
+                            <Col md={{size:3, offset:1}}>
+                                <Input type="select" 
+                                       name="contactType" 
+                                       value={this.state.contactType}
+                                       onChange={this.inputOnChangeHandler}
+                                >
+                                    <option>Tel.</option>
+                                    <option>Email</option>
+                                </Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label htmlFor="feedback" md={2}>Your FeedBack</Label>
+                            <Col md={10}>
+                                <Input 
+                                    type="textarea" 
+                                    id="message" 
+                                    name="message"
+                                    rows="12"
+                                    value={this.state.message}
+                                    onChange={this.inputOnChangeHandler}
+                                />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md={{size:10, offset:2}}>
+                                <Button type="submit" color="primary">Send FeedBack</Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
+                </div>
+            </div>
         </div>
-    );
+        );
+    }
 }
 
 export default Contact;
