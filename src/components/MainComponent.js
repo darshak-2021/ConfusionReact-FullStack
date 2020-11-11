@@ -20,9 +20,6 @@ const mapStateToProps = state => {
 
 
 class Main extends Component {
-  constructor(props){
-    super(props);
-  }
 
   render() {
     console.log(this.props.dishes); // This will show you the initial state of the components values as an Arrays
