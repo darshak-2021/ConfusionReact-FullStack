@@ -37,7 +37,8 @@ class CommentForm extends Component {
     }
     handleSubmitData(values) {
         this.toggleModal();
-        alert("Current state is:" + JSON.stringify(values));
+        // alert("Current state is:" + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
     render() {
         return(
@@ -116,7 +117,7 @@ class CommentForm extends Component {
     }
 }
 
-function RenderComments({comments}) {
+function RenderComments({comments, addComment, dishId}) {
     console.log(comments)
     if(comments != null) {
         // var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -138,7 +139,10 @@ function RenderComments({comments}) {
                 <h4>Comments</h4>
                 <ul className="list-unstyled">
                     {cmnts}
-                    <CommentForm/>
+                    <CommentForm 
+                        dishId={dishId} 
+                        addComment={addComment}
+                    />
                 </ul>
             </div>
         );
@@ -175,7 +179,11 @@ const DishDetail = (props) => {
     console.log(dish)
     if(dish != null) {
         const dishItem = <RenderDish dish={props.dish}/>;
-        const commentItem = <RenderComments comments={props.comments}/>;
+        const commentItem = <RenderComments 
+                                comments={props.comments}
+                                addComment={props.addComment}
+                                dishId={props.dish.id}
+                            />;
         return (
             <div className="container">
                 <div className="row">
