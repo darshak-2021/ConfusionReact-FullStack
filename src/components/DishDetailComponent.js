@@ -16,6 +16,7 @@ import {Card,
     Col,
     ModalFooter} from 'reactstrap';
 import {Control, LocalForm, Errors} from 'react-redux-form';
+import { LoadingSpinner } from './LoadingComponent';
 
 const maxLength =(len) => (val) => !(val) || (val.length <= len);
 const minLength =(len) => (val) => (val) && (val.length >= len);
@@ -177,7 +178,25 @@ function RenderDish({dish}) {
 const DishDetail = (props) => {
     const dish = props.dish;
     console.log(dish)
-    if(dish != null) {
+    if(props.isLoading) {
+        return(
+            <div className="container">
+                <div className="row">
+                    <LoadingSpinner/>
+                </div>
+            </div>
+        );
+    }
+    else if (props.errMsg) {
+        return(
+            <div className="container">
+                <div className="row">
+                <h4>{props.errMsg}</h4>
+                </div>
+            </div>
+        );
+    }
+    else if (dish != null) {
         const dishItem = <RenderDish dish={props.dish}/>;
         const commentItem = <RenderComments 
                                 comments={props.comments}
