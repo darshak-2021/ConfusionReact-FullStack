@@ -3,6 +3,7 @@ export const initialFeedback = {
     lastname:'',
     telnumber:'',
     email:'',
+    agree:false,
     contactType:'Tel.',
     message:''
 }
