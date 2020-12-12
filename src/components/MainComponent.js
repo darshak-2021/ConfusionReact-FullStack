@@ -9,7 +9,8 @@ import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
-import { addComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
+import { postComment } from '../redux/ActionCreators';
+import { fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
   return {
@@ -21,8 +22,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addComment: (dishId, rating, author, comment) => 
-          dispatch(addComment(dishId, rating, author, comment)),
+  postComment: (dishId, rating, author, comment) => 
+          dispatch(postComment(dishId, rating, author, comment)),
   fetchDishes: () => {dispatch(fetchDishes())},
   resetFeedbackForm: () => {dispatch(actions.reset('feedback'))},
   fetchComments: () => {dispatch(fetchComments())},
@@ -36,8 +37,8 @@ class Main extends Component {
     this.props.fetchPromos();
   }
   render() {
-    console.log(this.props.dishes); // This will show you the initial state of the components values as an Arrays
-    console.log(this.props.comments); // This will also show you the initial state of the components values as an Arrays
+    // console.log(this.props.dishes); // This will show you the initial state of the components values as an Arrays
+    // console.log(this.props.comments); // This will also show you the initial state of the components values as an Arrays
 
     const HomePage = () => {
       return (
@@ -53,9 +54,6 @@ class Main extends Component {
     }
 
     const DishWithId = ({match}) => {
-      console.log(match);
-      console.log(this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]);
-      console.log(this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10))[0]);
       return (
         <DishDetail dish = {this.props.dishes.dishes.filter((dish) => {
                       return dish.id === parseInt(match.params.dishId,10);
@@ -66,7 +64,7 @@ class Main extends Component {
                       return comment.dishId === parseInt(match.params.dishId, 10);
                     })}
                     commentErrMsg = {this.props.comments.errMsg}
-                    addComment = {this.props.addComment}
+                    postComment = {this.props.postComment}
                     
         />
       );

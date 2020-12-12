@@ -4,7 +4,6 @@ import { LoadingSpinner } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
 function RenderCard({item, isLoading, errMsg}) {
-    console.log('item', item) 
     if(isLoading) {
         return (
             <LoadingSpinner/>

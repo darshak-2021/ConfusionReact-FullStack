@@ -41,7 +41,7 @@ class CommentForm extends Component {
     handleSubmitData(values) {
         this.toggleModal();
         // alert("Current state is:" + JSON.stringify(values));
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
     render() {
         return(
@@ -120,7 +120,7 @@ class CommentForm extends Component {
     }
 }
 
-function RenderComments({comments, addComment, dishId}) {
+function RenderComments({comments, postComment, dishId}) {
     console.log(comments)
     if(comments != null) {
         // var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -144,7 +144,7 @@ function RenderComments({comments, addComment, dishId}) {
                     {cmnts}
                     <CommentForm 
                         dishId={dishId} 
-                        addComment={addComment}
+                        postComment={postComment}
                     />
                 </ul>
             </div>
@@ -179,7 +179,6 @@ function RenderDish({dish}) {
 
 const DishDetail = (props) => {
     const dish = props.dish;
-    console.log(dish)
     if(props.isLoading) {
         return(
             <div className="container">
@@ -202,7 +201,7 @@ const DishDetail = (props) => {
         const dishItem = <RenderDish dish={props.dish}/>;
         const commentItem = <RenderComments 
                                 comments={props.comments}
-                                addComment={props.addComment}
+                                postComment={props.postComment}
                                 dishId={props.dish.id}
                             />;
         return (
