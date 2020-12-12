@@ -1,8 +1,10 @@
 import React from 'react';
 import {Card, CardImg, CardText, CardTitle, CardBody, CardSubtitle} from 'reactstrap';
 import { LoadingSpinner } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 function RenderCard({item, isLoading, errMsg}) {
+    console.log('item', item) 
     if(isLoading) {
         return (
             <LoadingSpinner/>
@@ -14,18 +16,24 @@ function RenderCard({item, isLoading, errMsg}) {
         );
     }
     else {
-        return(
-            <Card>
-                <CardImg src={item.image} alt={item.name}/>
-                <CardBody>
-                    <CardTitle>{item.name}</CardTitle>
-                    {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle>:null}
-                    <CardText>{item.description}</CardText>
-                </CardBody>
-            </Card>
-        );
+        if(item){
+            return(
+                <Card>
+                    <CardImg src={ baseUrl + item.image} alt={item.name}/>
+                    <CardBody>
+                        <CardTitle>{item.name}</CardTitle>
+                        {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle>:null}
+                        <CardText>{item.description}</CardText>
+                    </CardBody>
+                </Card>
+            );
+        }else{
+            return (
+                <div />
+            )
+        }
+        
     }
-    
 }
 
 function Home(props) {
@@ -39,7 +47,10 @@ function Home(props) {
                     />
                 </div>
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.promotion}/>
+                    <RenderCard item={props.promotion}
+                        isLoading={props.promosLoading}
+                        errMsg={props.promosErrorMsg}
+                    />
                 </div>
                 <div className="col-12 col-md m-1">
                     <RenderCard item={props.leader}/>

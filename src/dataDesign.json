@@ -1,0 +1,19 @@
+{
+    "Quotations": [
+        {
+            "quoteId":0,
+            "textHeading":"wisdom",
+            "quoteDescription": "Calmnesss of mind is one of the beautiful jewls of wisdom."
+        },
+        {
+            "quoteId":1,
+            "textHeading":"mindfulness",
+            "quoteDescription": "Research has found mindfulness todignificantly predict high level of self-esteem and low levels of social anxiety."
+        },
+        {
+            "quoteId":2,
+            "textHeading":"thoughts",
+            "quoteDescription": "Be the witness of your thoughts. you are what observes, not what you observe."
+        }
+    ]
+}

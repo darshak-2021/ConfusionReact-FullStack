@@ -1,0 +1,44 @@
+{
+    "Meditations" : {
+        "Sessions": {
+            "Emotions": {
+                "Happy": [
+                    {
+                        "SessionTitle": "String",
+                        "SessionImg":"URL",
+                        "SessionType":"String",
+                        "SessionDuration":"String",
+                        "SessionAudioLink":"URL"
+                    }
+                ],
+                "Sad": [
+                    {
+                        "SessionTitle": "String",
+                        "SessionImg":"URL",
+                        "SessionType":"String",
+                        "SessionDuration":"String",
+                        "SessionAudioLink":"URL"
+                    }
+                ],
+                "Angery": [
+                    {
+                        "SessionTitle": "String",
+                        "SessionImg":"URL",
+                        "SessionType":"String",
+                        "SessionDuration":"String",
+                        "SessionAudioLink":"URL"
+                    }
+                ],
+                "Fear": [
+                    {
+                        "SessionTitle": "String",
+                        "SessionImg":"URL",
+                        "SessionType":"String",
+                        "SessionDuration":"String",
+                        "SessionAudioLink":"URL"
+                    }
+                ]
+            }
+        }
+    }
+}

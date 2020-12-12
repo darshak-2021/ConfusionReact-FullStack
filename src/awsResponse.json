@@ -1,0 +1,38 @@
+{
+    "FaceDetails": {
+        "Emotions": [
+            {
+                "Type": "HAPPY",
+                "Confidence": 97.60749053955078
+            },
+            {
+                "Type": "SURPRISED",
+                "Confidence": 0.7658454179763794
+            },
+            {
+                "Type": "CONFUSED",
+                "Confidence": 0.5557805895805359
+            },
+            {
+                "Type": "ANGRY",
+                "Confidence": 0.3515093922615051
+            },
+            {
+                "Type": "DISGUSTED",
+                "Confidence": 0.34102049469947815
+            },
+            {
+                "Type": "CALM",
+                "Confidence": 0.19356855750083923
+            },
+            {
+                "Type": "FEAR",
+                "Confidence": 0.13799777626991272
+            },
+            {
+                "Type": "SAD",
+                "Confidence": 0.046782251447439194
+            }
+        ]
+    }
+}
